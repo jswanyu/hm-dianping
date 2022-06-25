@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("tb_shop")
-public class Shop implements Serializable {
+public class Shop implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
@@ -102,7 +102,6 @@ public class Shop implements Serializable {
      * 更新时间
      */
     private LocalDateTime updateTime;
-
 
     @TableField(exist = false)
     private Double distance;
