@@ -3028,3 +3028,22 @@
 2022/06/24 20:09:17 [error] 75100#59216: *72 CreateFile() "D:\codework\Java\IDEA\hm-dianping\nginx-1.18.0/html/hmdp/js/axios.min.map" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /js/axios.min.map HTTP/1.1", host: "localhost:8080"
 2022/06/24 21:02:25 [error] 75100#59216: *76 CreateFile() "D:\codework\Java\IDEA\hm-dianping\nginx-1.18.0/html/hmdp/js/axios.min.map" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /js/axios.min.map HTTP/1.1", host: "localhost:8080"
 2022/06/24 22:25:36 [error] 75100#59216: *82 CreateFile() "D:\codework\Java\IDEA\hm-dianping\nginx-1.18.0/html/hmdp/js/axios.min.map" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /js/axios.min.map HTTP/1.1", host: "localhost:8080"
+2022/06/26 20:27:02 [notice] 75932#83348: signal process started
+2022/06/26 20:27:02 [error] 75932#83348: OpenEvent("Global\ngx_reload_74960") failed (2: The system cannot find the file specified)
+2022/06/26 20:27:56 [notice] 80772#84872: signal process started
+2022/06/26 20:27:56 [error] 80772#84872: OpenEvent("Global\ngx_reload_74960") failed (2: The system cannot find the file specified)
+2022/06/26 20:29:06 [notice] 97116#79024: signal process started
+2022/06/26 20:29:06 [error] 97116#79024: OpenEvent("Global\ngx_reload_74960") failed (2: The system cannot find the file specified)
+2022/06/26 20:30:08 [notice] 96368#91720: signal process started
+2022/06/26 20:34:10 [notice] 100048#100052: signal process started
+2022/06/26 20:34:17 [notice] 100196#100200: signal process started
+2022/06/26 20:34:17 [error] 100196#100200: CreateFile() "D:\codework\Java\IDEA\hm-dianping\nginx-1.18.0/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2022/06/26 20:34:25 [notice] 100320#100324: signal process started
+2022/06/26 20:34:34 [notice] 74068#88288: signal process started
+2022/06/26 20:37:37 [notice] 93464#94708: signal process started
+2022/06/26 20:37:41 [notice] 63380#80744: signal process started
+2022/06/26 20:38:11 [notice] 96584#96736: signal process started
+2022/06/26 20:38:15 [notice] 96332#94388: signal process started
+2022/06/26 20:38:15 [error] 96332#94388: CreateFile() "D:\codework\Java\IDEA\hm-dianping\nginx-1.18.0/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2022/06/26 20:39:02 [notice] 86444#81204: signal process started
+2022/06/26 20:39:12 [notice] 82216#94976: signal process started
