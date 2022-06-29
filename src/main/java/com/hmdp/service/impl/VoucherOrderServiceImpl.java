@@ -8,8 +8,10 @@ import com.hmdp.mapper.VoucherOrderMapper;
 import com.hmdp.service.ISeckillVoucherService;
 import com.hmdp.service.IVoucherOrderService;
 import com.hmdp.utils.RedisIdWorker;
+import com.hmdp.utils.SimpleRedisLock;
 import com.hmdp.utils.UserHolder;
 import org.springframework.aop.framework.AopContext;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,9 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
     @Resource
     private RedisIdWorker redisIdWorker;
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     @Override
     public Result seckillVoucher(Long voucherId) {
         // 1.查询优惠券:去秒杀券表里查
@@ -55,12 +60,24 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
 
         // 注意这里
         Long userId = UserHolder.getUser().getId();
-        synchronized (userId.toString().intern()) {
+        // 创建锁对象
+        SimpleRedisLock lock = new SimpleRedisLock("order:" + userId, stringRedisTemplate);
+        // 获取锁，方便调试将超时时间设置长一点，实际上要根据业务执行时间来定，比如业务只用执行500ms，设置个5s最多了
+        boolean isLock = lock.tryLock(3600);
+        // 判断是否获取锁成功
+        if(!isLock){
+            // 获取锁失败，返回错误提示
+            return Result.fail("不允许重复下单！");
+        }
+        // 防止出现异常，放到try-finally里，最终释放锁
+        try {
             // 获得代理对象(事务)
             IVoucherOrderService proxy = (IVoucherOrderService) AopContext.currentProxy();
             return proxy.createVoucherOrder(voucherId);  // 用代理对象去调用加了事务管理注解的方法
+        } finally {
+            // 释放锁
+            lock.unlock();
         }
-
     }
 
     @Transactional  // 涉及到了秒杀券表和优惠券订单表
