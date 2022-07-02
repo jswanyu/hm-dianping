@@ -25,6 +25,8 @@ public class SimpleRedisLock implements ILock{
     private static final String KEY_PREFIX = "lock:";
     // 线程标识，不仅仅用线程ID，因为多个集群里可能会出现相同的线程号，所以这里再拼上一段随机字符。isSimple设为true表示不要加下划线
     private static final String ID_PREFIX = UUID.randomUUID().toString(true) + "-";
+
+    // 静态代码块加载lua脚本
     private static final DefaultRedisScript<Long> UNLOCK_SCRIPT; // 定义redis脚本变量
     static { // 放到静态代码块里，这样类加载时就能够加载好脚本文件，而不是等每次要调用时候才加载
         UNLOCK_SCRIPT = new DefaultRedisScript<>();
@@ -44,7 +46,7 @@ public class SimpleRedisLock implements ILock{
 
     @Override
     public void unlock() {
-        // 调用lua脚本
+        // 调用lua脚本，使用的是stringRedisTemplate.execute()方法
         stringRedisTemplate.execute(
                 UNLOCK_SCRIPT,
                 Collections.singletonList(KEY_PREFIX + name),

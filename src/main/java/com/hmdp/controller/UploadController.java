@@ -44,10 +44,11 @@ public class UploadController {
         return Result.ok();
     }
 
+    //  不管图片原本的命名，UUID生成实际字符串重命名图片，同时哈希打两级散
     private String createNewFileName(String originalFilename) {
         // 获取后缀
         String suffix = StrUtil.subAfter(originalFilename, ".", true);
-        // 生成目录
+        // 生成目录，
         String name = UUID.randomUUID().toString();
         int hash = name.hashCode();
         int d1 = hash & 0xF;
