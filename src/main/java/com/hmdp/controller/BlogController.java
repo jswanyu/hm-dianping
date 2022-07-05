@@ -18,8 +18,8 @@ import java.util.List;
  * 前端控制器
  * </p>
  *
- * @author 虎哥
- * @since 2021-12-22
+ * @author wanyu
+ * @since 2022-05-22
  */
 @RestController
 @RequestMapping("/blog")
@@ -61,7 +61,6 @@ public class BlogController {
         return blogService.queryBlogOfFollow(max, offset);
     }
 
-    // BlogController
     @GetMapping("/of/user")
     public Result queryBlogByUserId(
             @RequestParam(value = "current", defaultValue = "1") Integer current,
@@ -74,6 +73,7 @@ public class BlogController {
         return Result.ok(records);
     }
 
+    // 首页根据点赞数排序查询笔记
     @GetMapping("/hot")
     public Result queryHotBlog(@RequestParam(value = "current", defaultValue = "1") Integer current) {
         return blogService.queryHotBlog(current);

@@ -3335,3 +3335,4 @@
 2022/07/05 15:29:26 [notice] 6872#22200: signal process started
 2022/07/05 15:29:30 [notice] 10880#17852: signal process started
 2022/07/05 15:31:50 [error] 20952#16624: *1 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while reading response header from upstream, client: 127.0.0.1, server: localhost, request: "POST /api/voucher-order/seckill/12 HTTP/1.1", upstream: "http://127.0.0.1:8081/voucher-order/seckill/12", host: "localhost:8080"
+2022/07/05 17:07:57 [notice] 17444#17204: signal process started

@@ -31,8 +31,8 @@ import java.util.concurrent.Executors;
  *  服务实现类
  * </p>
  *
- * @author 虎哥
- * @since 2021-12-22
+ * @author wanyu
+ * @since 2022-05-22
  */
 @Service
 public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, VoucherOrder> implements IVoucherOrderService {
@@ -156,7 +156,6 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
 
 
     // 从阻塞队列里获取订单，创建秒杀订单
-    @Override
     public void createVoucherOrder(VoucherOrder voucherOrder) {
         // 1.获取用户
         // 这里获取用户id就不能去当前线程里取了，因为我们是单独开了线程去处理队列里的订单，不是主线程

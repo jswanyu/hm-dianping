@@ -17,9 +17,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // token刷新的拦截器
+        // token刷新的拦截器，只负责获取、查询、更新 token，实际上不进行拦截
         registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate)).addPathPatterns("/**").order(0);
-        // 登录验证拦截器
+        // 登录验证拦截器，这个拦截器负责拦截
         registry.addInterceptor(new LoginInterceptor())
                 .excludePathPatterns(
                         "/shop/**",
