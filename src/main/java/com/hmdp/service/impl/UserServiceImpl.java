@@ -46,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Result sendCode(String phone, HttpSession session) {
         // 1.校验手机号
-        if (RegexUtils.isPhoneInvalid(phone)) {
+        if (RegexUtils.isPhoneInvalid(phone)) {  // 内部是手机号正则判断
             // 2.如果不符合，返回错误信息
             return Result.fail("手机号格式错误！");
         }
@@ -91,7 +91,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             user = createUserWithPhone(phone);
         }
 
-        // 7.保存用户信息到 redis中
+        // 7.保存用户信息到 redis 中
         // 7.1.随机生成token，作为登录令牌。UUID是工具类，toStirng如果给参数true表示不生成带下划线的随机字符串
         String token = UUID.randomUUID().toString(true);
         // 7.2.将User对象先转为UserDTO再转为HashMap存储到redis里，都是用的BeanUtil里的工具。这里由于UserDTO有long型的id，转换时需要自定义规则
@@ -106,7 +106,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 7.4.设置token有效期，模仿session设置为30min
         stringRedisTemplate.expire(tokenKey, LOGIN_USER_TTL, TimeUnit.MINUTES);
 
-        // 8.返回token
+        // 8.返回token给客户端
         return Result.ok(token);
     }
 
